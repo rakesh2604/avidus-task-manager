@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build outputs
+dist/
+build/
+out/
+.vite/
+*.tsbuildinfo
+
+# Logs & debug
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Test & coverage
+coverage/
+.nyc_output/
+
+# OS & editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Runtime & cache
+.cache/
+.temp/
+tmp/
+*.local
+
+# Local scratch & assignment artifacts (do not commit)
+scratch/
+*.pdf
+Pasted*.txt
+Pasted*.md
+
+# Optional local tooling
+.eslintcache
