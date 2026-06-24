@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+const resolveBaseURL = () => {
+  // Local dev only — use .env or localhost
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  }
+  // Production (Vercel): same-origin proxy via vercel.json — no CORS issues
+  return '/api';
+};
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: resolveBaseURL(),
 });
 
 API.interceptors.request.use((config) => {
@@ -17,7 +26,9 @@ API.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/login';
+      if (!window.location.pathname.startsWith('/login')) {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

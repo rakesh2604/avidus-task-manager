@@ -22,7 +22,13 @@ const Login = () => {
       const data = await login(form.email, form.password);
       navigate(data.user.role === 'Admin' ? '/admin' : '/user-dashboard', { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Check your credentials.');
+      if (!err.response) {
+        setError(
+          'Unable to reach the server. If this is the live site, redeploy after the latest update or verify the API is running.'
+        );
+      } else {
+        setError(err.response?.data?.message || 'Login failed. Check your credentials.');
+      }
     } finally {
       setLoading(false);
     }
